@@ -124,6 +124,11 @@ client.on('message', message => {
 
 });
 
+if (Discord_bot_token != undefined) {
+    console.log('DISCORD_TOKENが設定されています。');
+    process.exit(1);
+}
+
 if (Discord_bot_token == undefined) {
     console.log('DISCORD_TOKENが設定されていません。');
     process.exit(0);
