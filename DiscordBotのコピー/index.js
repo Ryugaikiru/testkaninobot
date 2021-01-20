@@ -1,7 +1,6 @@
 require('dotenv').config();
 const discord = require('discord.js');
 const client = new discord.Client();
-const DISCORD_BOT_token = process.env.DISCORD_TOKEN;
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
@@ -124,12 +123,12 @@ client.on('message', message => {
 
 });
 
-if (DISCORD_BOT_token == undefined) {
-    console.log('DISCORD_BOT_TOKENが設定されていません。');
+if (process.env.DISCORD_TOKEN == undefined) {
+    console.log('DISCORD_TOKENが設定されていません。');
     process.exit(0);
 }
 
-client.login(DISCORD_BOT_token);
+client.login(process.env.DISCORD_TOKEN);
 
 function sendReply(message, text) {
     message.reply(text)
@@ -142,4 +141,3 @@ function sendMsg(channelId, text, option = {}) {
         .then(console.log("メッセージ送信: " + text + JSON.stringify(option)))
         .catch(console.error);
 }
-
